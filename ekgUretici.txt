@@ -1,0 +1,176 @@
+def generate_ekg_waveforms(num_waveforms=4, num_data_points=1000):
+    # Dalga parametreleri
+    p_wave_duration = 40
+    qrs_complex_duration = 100
+    t_wave_duration = 60
+    baseline_duration = 50
+
+    # Her döngüdeki veri noktaları
+    points_per_waveform = num_data_points // num_waveforms
+
+    # EKG verilerini saklamak için boş bir liste oluşturun
+    ekg_data = []
+
+    for i in range(num_waveforms):
+        start = i * points_per_waveform
+
+        # P dalgası
+        p_wave_start = start
+        p_wave_end = p_wave_start + p_wave_duration
+        ekg_data.extend((np.sin(np.linspace(0, np.pi, p_wave_duration)) * random.uniform(0.8, 1.2)).tolist())
+
+        # QRS kompleksi
+        qrs_start = p_wave_end
+        qrs_end = qrs_start + qrs_complex_duration
+        ekg_data.extend((np.sin(np.linspace(0, 2 * np.pi, qrs_complex_duration)) * random.uniform(1.3, 1.7)).tolist())
+
+        # T dalgası
+        t_wave_start = qrs_end
+        t_wave_end = t_wave_start + t_wave_duration
+        ekg_data.extend((np.sin(np.linspace(0, np.pi, t_wave_duration)) * random.uniform(0.8, 1.2)).tolist())
+
+        # İzoelektrik çizgi
+        baseline_start = t_wave_end
+        baseline_end = baseline_start + baseline_duration
+        ekg_data.extend([0] * baseline_duration)
+
+    return ekg_data
+
+def generate_data(data_points=6):
+    ekg_signal = []
+
+    for _ in range(data_points):
+        # P dalgası
+        for i in range(5):
+            ekg_signal.append(random.uniform(0, 0.1))
+
+        # Q dalgası
+        for i in range(2):
+            ekg_signal.append(random.uniform(-0.1, 0))
+
+        # R dalgası
+        ekg_signal.append(random.uniform(0.3, 0.6))
+
+        # S dalgası
+        for i in range(2):
+            ekg_signal.append(random.uniform(-0.1, 0))
+
+        # T dalgası
+        for i in range(5):
+            ekg_signal.append(random.uniform(0, 0.1))
+
+        # İzoelektrik çizgi
+        for i in range(15):
+            ekg_signal.append(0)
+
+    return ekg_signal
+
+
+positivePicks = [
+    0.057851698742354125, 0.047851698742354125, 0.051851698742354125,
+    0.041751698742354125, 0.060851698742354125, 0.047751648742354125,
+    0.049859798742354125, 0.042012698742354125, 0.052051698742354125,
+    0.046851698742354125, 0.049451698742354125, 0.052151698742354125,
+    0.043251698742354125, 0.040851698742354125, 0.050551698742354125,
+    0.049951698742354125, 0.060051698742354125, 0.044451698742354125,
+    0.049051698742354125, 0.047751698742354125, 0.050051698742354125,
+    0.045351698742354125, 0.049151698742354125,
+  ]
+
+negativePicks = [
+    -0.057851698742354125, -0.047851698742354125, -0.051851698742354125,
+    -0.041751698742354125, -0.060851698742354125, -0.047751648742354125,
+    -0.049859798742354125, -0.042012698742354125, -0.052051698742354125,
+    -0.046851698742354125, -0.049451698742354125, -0.052151698742354125,
+    -0.043251698742354125, -0.040851698742354125, -0.050551698742354125,
+    -0.049951698742354125, -0.060051698742354125, -0.044451698742354125,
+    -0.049051698742354125, -0.047751698742354125, -0.050051698742354125,
+    -0.045351698742354125, -0.049151698742354125
+  ]
+
+def createData():
+    
+    data = []
+    for i in range(25):
+      data.append(random.random()/-100)
+    for i in range(50):
+      data.append(random.random()/100)
+        
+    for i in range(3):
+      data.append(random.random()/35)
+
+    for i in range(2):
+      data.append(random.random()/-100)
+
+    data.append(random.choice(positivePicks))
+
+    for i in range(2):
+      data.append(random.random()/-100)
+    for i in range(3):
+      data.append(random.random()/35)
+        
+    for i in range(50):
+      data.append(random.random()/-100)
+
+    for i in range(25):
+      data.append(random.random()/100)
+
+    for i in range(40):
+      data.append(random.random()/1000)
+
+    for i in range(25):
+      data.append(random.random()/-100)
+    for i in range(50):
+      data.append(random.random()/100)
+        
+    for i in range(3):
+      data.append(random.random()/35)
+
+    for i in range(2):
+      data.append(random.random()/-100)
+
+    data.append(random.choice(positivePicks))
+
+    for i in range(2):
+      data.append(random.random()/-100)
+    for i in range(3):
+      data.append(random.random()/35)
+        
+    for i in range(50):
+      data.append(random.random()/-100)
+
+    for i in range(25):
+      data.append(random.random()/100)
+
+    for i in range(40):
+      data.append(random.random()/1000)
+
+    for i in range(25):
+      data.append(random.random()/-100)
+    for i in range(50):
+      data.append(random.random()/100)
+        
+    for i in range(3):
+      data.append(random.random()/35)
+
+    for i in range(2):
+      data.append(random.random()/-100)
+
+    data.append(random.choice(positivePicks))
+
+    for i in range(2):
+      data.append(random.random()/-100)
+    for i in range(3):
+      data.append(random.random()/35)
+        
+    for i in range(50):
+      data.append(random.random()/-100)
+
+    for i in range(25):
+      data.append(random.random()/100)
+
+    for i in range(40):
+      data.append(random.random()/1000)
+
+    return data
+   
